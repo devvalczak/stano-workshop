@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import Wordmark from './Wordmark.astro';
+import SocialLinks from './SocialLinks.astro';
 import logo from '../assets/logo.jpg';
 import { site } from '../site';
 import { useTranslations, type Lang } from '../i18n';
@@ -9,7 +10,8 @@ interface Props {
   lang: Lang;
 }
 
-const { t } = useTranslations(Astro.props.lang);
+const { lang } = Astro.props;
+const { t } = useTranslations(lang);
 ---
 
 <!-- Bottom padding on small screens keeps content clear of the fixed call bar. -->
@@ -32,11 +34,17 @@ const { t } = useTranslations(Astro.props.lang);
         <p class="text-sm">{t.footer.tagline}</p>
       </div>
     </div>
+    <SocialLinks lang={lang} />
     <p class="text-sm">
       {site.street}, {site.postalCode}
       {site.city}<br />{t.info.tel}
       <a class="hover:text-chalk" href={site.phoneHref}>{site.phone}</a>
     </p>
-    <p class="text-sm">© {new Date().getFullYear()} {site.name}</p>
+    <div class="flex flex-col gap-1 text-sm sm:items-end">
+      <p>© {new Date().getFullYear()} {site.name}</p>
+      <button type="button" class="text-left underline underline-offset-4 hover:text-chalk" data-consent-open>
+        {t.consent.settings}
+      </button>
+    </div>
   </div>
 </footer>

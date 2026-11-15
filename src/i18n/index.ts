@@ -12,7 +12,6 @@ export const languages = Object.keys(locales) as Lang[];
 /** Path of every page per language. Adding a page: add an entry here and a view in src/views/ (see src/pages/[...slug].astro). */
 export const routes = {
   home: { pl: '/', en: '/en/' },
-  pricing: { pl: '/cennik/', en: '/en/pricing/' },
 } as const satisfies Record<string, Record<Lang, string>>;
 export type PageId = keyof typeof routes;
 

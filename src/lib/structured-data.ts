@@ -1,11 +1,12 @@
 // schema.org JSON-LD builders.
-import { site, absolute, WEEK_DAYS } from '../site';
-import { routes, useTranslations, type Lang, type PageId } from '../i18n';
+import { site, maps, absolute, WEEK_DAYS } from '../site';
+import { routes, useTranslations, type Lang } from '../i18n';
 import services from '../data/services.json';
 
 export function localBusiness(lang: Lang) {
   const { t } = useTranslations(lang);
   const { hours } = site;
+  const sameAs = site.social.map((s) => s.url);
 
   return {
     '@context': 'https://schema.org',
@@ -23,6 +24,7 @@ export function localBusiness(lang: Lang) {
       addressCountry: site.country,
     },
     areaServed: site.city,
+    hasMap: maps.place,
     ...(hours.days.length && {
       openingHoursSpecification: [
         {
@@ -34,26 +36,14 @@ export function localBusiness(lang: Lang) {
       ],
     }),
     ...(site.geo && { geo: { '@type': 'GeoCoordinates', ...site.geo } }),
-    ...(site.sameAs.length && { sameAs: site.sameAs }),
+    ...(sameAs.length && { sameAs }),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: t.nav.services,
-      itemListElement: services.map((s) => ({
+      itemListElement: services.map((id) => ({
         '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: t.services[s.id as keyof typeof t.services].title },
+        itemOffered: { '@type': 'Service', name: t.services[id as keyof typeof t.services].title },
       })),
     },
-  };
-}
-
-/** Breadcrumb trail from the home page to `pageId`. */
-export function breadcrumbs(lang: Lang, pageId: PageId, name: string) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: site.name, item: absolute(routes.home[lang]) },
-      { '@type': 'ListItem', position: 2, name, item: absolute(routes[pageId][lang]) },
-    ],
   };
 }

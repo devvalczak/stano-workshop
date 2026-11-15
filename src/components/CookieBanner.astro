@@ -1,0 +1,30 @@
+---
+// Consent prompt for third-party embeds. Hidden until main.js finds no stored decision;
+// any element with [data-consent] records a decision, [data-consent-open] reopens the prompt.
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { t } = useTranslations(Astro.props.lang);
+---
+
+<section
+  id="cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-graphite bg-steel shadow-[0_-8px_24px_rgb(0_0_0/0.35)]"
+  aria-label={t.consent.label}
+  hidden
+>
+  <div class="mx-auto flex max-w-page flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:px-6">
+    <p class="flex-1 text-sm leading-relaxed text-silver sm:text-base">{t.consent.text}</p>
+    <div class="flex shrink-0 gap-3">
+      <button type="button" class="btn flex-1 btn-outline sm:flex-none" data-consent="denied">
+        {t.consent.reject}
+      </button>
+      <button type="button" class="btn flex-1 btn-primary sm:flex-none" data-consent="granted">
+        {t.consent.accept}
+      </button>
+    </div>
+  </div>
+</section>

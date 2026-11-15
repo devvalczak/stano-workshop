@@ -71,17 +71,45 @@ onPage('#lightbox', (dialog) => {
   dialog.addEventListener('click', (e) => e.target === dialog && dialog.close());
 });
 
-// ---------- Click-to-load map: replaces the placeholder with the embed iframe ----------
-onPage('#map-load', (button) => {
-  button.addEventListener('click', () => {
+// ---------- Consent for third-party embeds ----------
+// Decision is stored as "granted" | "denied"; no stored value means the visitor has not chosen yet.
+const CONSENT_KEY = 'consent.embeds';
+const consent = {
+  get: () => storage.get(CONSENT_KEY),
+  set(value) {
+    storage.set(CONSENT_KEY, value);
+    document.dispatchEvent(new CustomEvent('consentchange', { detail: value }));
+  },
+};
+
+document.addEventListener('click', (e) => {
+  const choice = e.target.closest('[data-consent]');
+  if (choice) consent.set(choice.dataset.consent);
+});
+
+onPage('#cookie-banner', (banner) => {
+  const show = (visible) => (banner.hidden = !visible);
+  document.addEventListener('click', (e) => e.target.closest('[data-consent-open]') && show(true));
+  document.addEventListener('consentchange', () => show(false));
+  show(consent.get() === null);
+});
+
+// Swaps the placeholder for an iframe while consent is granted and restores it when consent is withdrawn.
+onPage('[data-consent-embed]', (container) => {
+  const placeholder = container.firstElementChild;
+
+  const render = (state) => {
+    if (state !== 'granted') return container.replaceChildren(placeholder);
     const iframe = document.createElement('iframe');
-    iframe.title = button.dataset.title;
-    iframe.src = button.dataset.src;
+    iframe.title = container.dataset.title;
+    iframe.src = container.dataset.src;
     iframe.className = 'map-frame h-full min-h-[320px] w-full';
     iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    document.getElementById('map-wrap').replaceChildren(iframe);
-    iframe.focus();
-  });
+    container.replaceChildren(iframe);
+  };
+
+  document.addEventListener('consentchange', (e) => render(e.detail));
+  render(consent.get());
 });
 
 // ---------- Call bar: shown once the element named in data-reveal-after has scrolled past ----------

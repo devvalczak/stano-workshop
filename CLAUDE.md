@@ -29,19 +29,20 @@ Node w wersji z `.nvmrc` (20). Po zmianie `.env` zrestartuj `npm run dev`.
 
 ## Gdzie co jest
 
-| Co zmienić                                             | Gdzie                                                                                     |
-| ------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| Telefon, adres, godziny, dni otwarcia, domena, profile | `.env` (poza repo; wzór: `.env.example`; w CI z sekretu `ENV_FILE`)                       |
-| Teksty strony                                          | `src/i18n/pl.json`, `src/i18n/en.json` — identyczna struktura kluczy (pilnuje `lint`)     |
-| Lista usług, pozycje i kwoty cennika                   | `src/data/services.json` (+ teksty: `services.<id>`, `pricing.names.<id>` w locale)       |
-| Atuty (ikony + kolejność)                              | `src/data/perks.json` (id = nazwa ikony z `icons.ts`; teksty: `home.perks.items.<id>`)    |
-| Zdjęcia galerii                                        | pliki w `src/assets/gallery/` + wpis `{ "file", "alt": { "pl", "en" } }` w `gallery.json` |
-| Opinie klientów                                        | `src/data/reviews.json`: `{ "author", "rating", "text", "lang" }` (bez tłumaczenia)       |
-| Kolory, typografia, przyciski                          | `src/styles/global.css` (tokeny, `@theme`, `@utility`)                                    |
-| Ikony                                                  | `src/components/icons.ts` (rejestr SVG) → `<Icon name="…" />`                             |
-| Zachowanie w przeglądarce                              | `src/scripts/main.js`                                                                     |
-| Adresy podstron w obu językach                         | `routes` w `src/i18n/index.ts`                                                            |
-| Favicon, og-image                                      | `public/`                                                                                 |
+| Co zmienić                                             | Gdzie                                                                                                                                                                                                                    |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Telefon, adres, godziny, dni otwarcia, domena, profile | `.env` (poza repo; wzór: `.env.example`; w CI z sekretu `ENV_FILE`)                                                                                                                                                      |
+| Teksty strony                                          | `src/i18n/pl.json`, `src/i18n/en.json` — identyczna struktura kluczy (pilnuje `lint`)                                                                                                                                    |
+| Lista usług (kolejność)                                | `src/data/services.json` (teksty: `services.<id>` w locale)                                                                                                                                                              |
+| Atuty (ikony + kolejność)                              | `src/data/perks.json` (id = nazwa ikony z `icons.ts`; teksty: `home.perks.items.<id>`)                                                                                                                                   |
+| Zdjęcia galerii                                        | pliki w `src/assets/gallery/` + wpis `{ "file", "alt": { "pl", "en" } }` w `gallery.json`                                                                                                                                |
+| Opinie klientów                                        | `src/data/reviews.json`: `{ "author", "rating", "text", "lang" }` (bez tłumaczenia)                                                                                                                                      |
+| Kolory, typografia, przyciski                          | `src/styles/global.css` (tokeny, `@theme`, `@utility`)                                                                                                                                                                   |
+| Profile społecznościowe                                | `FACEBOOK_URL`, `GOOGLE_MAPS_URL` w `.env` (ikony w kontakcie i stopce, `sameAs` w JSON-LD); nowy serwis: zmienna w `.env` + wpis w `site.social` (`src/site.ts`) + ikona w `icons.ts` + etykieta `social.<id>` w locale |
+| Ikony                                                  | `src/components/icons.ts` (rejestr SVG) → `<Icon name="…" />`                                                                                                                                                            |
+| Zachowanie w przeglądarce                              | `src/scripts/main.js`                                                                                                                                                                                                    |
+| Adresy podstron w obu językach                         | `routes` w `src/i18n/index.ts`                                                                                                                                                                                           |
+| Favicon, og-image                                      | `public/`                                                                                                                                                                                                                |
 
 ## Architektura
 
@@ -49,7 +50,7 @@ Node w wersji z `.nvmrc` (20). Po zmianie `.env` zrestartuj `npm run dev`.
   (`src/i18n/index.ts`) i mapy `views` → widoki w `src/views/` dostają tylko `lang`.
 - `src/layouts/Base.astro` — head, SEO, canonical/hreflang, JSON-LD, header/footer/callbar.
 - Komponenty wielokrotnego użytku: `Section` (sekcja + kolumna), `Band` (skośna belka), `Icon`,
-  `PriceList`, `Faq`, `Wordmark`, `Header`, `Footer`, `Callbar`.
+  `Faq`, `SocialLinks`, `CookieBanner`, `Wordmark`, `Header`, `Footer`, `Callbar`.
 - `src/site.ts` — dane z `.env` + `url()` / `absolute()`; `src/lib/` — JSON-LD, galeria.
 - Struktura (id, kolejność, liczby, ikony) w `src/data/*.json`; teksty w locale pod tymi samymi id.
 
@@ -83,6 +84,16 @@ Node w wersji z `.nvmrc` (20). Po zmianie `.env` zrestartuj `npm run dev`.
 - CI odtwarza `.env` z sekretu repo `ENV_FILE` (cała zawartość pliku). Po zmianie lokalnego `.env`
   właściciel aktualizuje sekret: `gh secret set ENV_FILE < .env` (nie rób tego sam).
 - Etap Lint w CI używa `.env.example`, więc nie potrzebuje sekretów.
+
+## Zgoda na cookies (osadzenia zewnętrzne)
+
+- Baner: `src/components/CookieBanner.astro`, logika: sekcja „Consent” w `src/scripts/main.js`
+  (decyzja w `localStorage` pod `consent.embeds`: `granted` / `denied`).
+- Każde osadzenie zewnętrzne (mapa itp.) oznaczaj `data-consent-embed` + `data-src` + `data-title`;
+  pierwszy element dziecka to placeholder pokazywany bez zgody. Przyciski z `data-consent="granted|denied"`
+  zapisują decyzję, `data-consent-open` ponownie otwiera baner (link w stopce).
+- Nic nie może łączyć się z zewnętrznymi serwisami ustawiającymi cookies przed zgodą.
+- Mapa: `MAPS_QUERY` (pinezka wizytówki) i `GOOGLE_MAPS_URL` (link do wizytówki) w `.env`.
 
 ## Treści
 

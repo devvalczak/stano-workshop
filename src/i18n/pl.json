@@ -34,7 +34,6 @@
   },
   "nav": {
     "services": "Usługi",
-    "pricing": "Cennik",
     "about": "O nas",
     "gallery": "Galeria",
     "reviews": "Opinie",
@@ -87,8 +86,7 @@
     },
     "services": {
       "title": "Co naprawiamy",
-      "lead": "Od przeglądu po poważniejsze naprawy mechaniczne. Nie widzisz swojej usterki na liście? Zadzwoń i zapytaj.",
-      "seePricing": "Zobacz cennik"
+      "lead": "Od przeglądu po poważniejsze naprawy mechaniczne. Nie widzisz swojej usterki na liście? Zadzwoń i zapytaj."
     },
     "perks": {
       "title": "Dlaczego {name}",
@@ -124,44 +122,8 @@
       "title": "Kontakt",
       "directions": "Wyznacz trasę w Google Maps",
       "mapLoad": "Pokaż mapę",
-      "mapNote": "Mapa ładuje się z Google Maps, który może zapisywać pliki cookies.",
       "mapTitle": "Mapa dojazdu do {name}, {street}, {city}",
       "band": "Zapraszam do kontaktu!"
-    }
-  },
-  "pricing": {
-    "meta": {
-      "title": "Cennik i FAQ – {name}, {city}",
-      "description": "Orientacyjny cennik usług warsztatu {name} w {cityLocative} oraz odpowiedzi na najczęstsze pytania klientów. Tel. {phone}."
-    },
-    "breadcrumb": "Cennik i FAQ",
-    "title": "Cennik",
-    "lead": "Ceny orientacyjne za robociznę, bez części. Koszt zależy od modelu auta, więc dokładną wycenę podajemy przed rozpoczęciem naprawy.",
-    "toFaq": "Najczęstsze pytania",
-    "from": "od",
-    "currency": "zł",
-    "perHour": "zł/h",
-    "names": {
-      "oil-change": "Wymiana oleju silnikowego z filtrem",
-      "air-filter": "Wymiana filtra powietrza",
-      "cabin-filter": "Wymiana filtra kabinowego",
-      "fuel-filter": "Wymiana filtra paliwa",
-      "shocks": "Wymiana amortyzatorów (oś)",
-      "control-arm": "Wymiana wahacza (szt.)",
-      "stabilizer-links": "Wymiana łączników stabilizatora (para)",
-      "clutch-kit": "Wymiana kompletu sprzęgła",
-      "clutch-dmf": "Wymiana sprzęgła z kołem dwumasowym",
-      "timing-belt": "Wymiana paska rozrządu z pompą wody",
-      "timing-chain": "Wymiana łańcucha rozrządu",
-      "fault-codes": "Odczyt i kasowanie błędów",
-      "fault-diagnosis": "Diagnostyka usterki z analizą parametrów",
-      "brake-pads": "Wymiana klocków hamulcowych (oś)",
-      "brake-discs-pads": "Wymiana tarcz i klocków hamulcowych (oś)",
-      "labour-hour": "Roboczogodzina przy innych naprawach"
-    },
-    "cta": {
-      "title": "Nie ma tu Twojej naprawy?",
-      "text": "Zadzwoń i opisz usterkę. Powiemy, ile mniej więcej to będzie kosztować."
     }
   },
   "faq": {
@@ -178,8 +140,8 @@
         "a": "{schedule}. Warsztat mieści się przy ulicy {street} w {cityLocative}."
       },
       {
-        "q": "Czy cena z cennika jest ostateczna?",
-        "a": "Nie. Cennik pokazuje orientacyjne ceny robocizny. Przed naprawą mówimy, co jest do zrobienia i ile to będzie kosztować, razem z częściami."
+        "q": "Ile kosztuje naprawa?",
+        "a": "Koszt zależy od usterki i modelu auta. Przed naprawą mówimy, co jest do zrobienia i ile to będzie kosztować, razem z częściami."
       },
       {
         "q": "Ile trwa naprawa?",
@@ -218,5 +180,16 @@
   "schedule": {
     "withDays": "{days} od {open} do {close}",
     "noDays": "Od {open} do {close}"
+  },
+  "consent": {
+    "label": "Zgoda na pliki cookies",
+    "text": "Mapa dojazdu pochodzi z Google Maps, które przy wyświetlaniu zapisuje pliki cookies. Bez zgody mapa się nie wczyta, a reszta strony działa normalnie.",
+    "accept": "Zgadzam się",
+    "reject": "Odrzuć",
+    "settings": "Ustawienia cookies"
+  },
+  "social": {
+    "facebook": "{name} na Facebooku",
+    "google": "{name} w Google Maps"
   }
 }

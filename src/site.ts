@@ -53,14 +53,29 @@ export const site = {
       .filter((d): d is DayCode => d in WEEK_DAYS),
   },
   geo: lat && lng ? { latitude: Number(lat), longitude: Number(lng) } : null,
-  sameAs: [optional('GOOGLE_PROFILE_URL'), optional('FACEBOOK_URL')].filter(Boolean),
+  /** Social profiles with a URL set in .env; ids match icon names and `social.*` locale keys. */
+  social: (
+    Object.entries({ facebook: optional('FACEBOOK_URL'), google: optional('GOOGLE_MAPS_URL') }) as [
+      SocialNetwork,
+      string,
+    ][]
+  )
+    .filter(([, profileUrl]) => profileUrl)
+    .map(([id, profileUrl]) => ({ id, url: profileUrl })),
 };
 
-const addressQuery = encodeURIComponent(`${site.street}, ${site.postalCode} ${site.city}`);
+export type SocialNetwork = 'facebook' | 'google';
+
+// Including the business name makes Google resolve the query to the listing pin rather than a bare address.
+const mapsQuery = encodeURIComponent(
+  optional('MAPS_QUERY') || `${site.name}, ${site.street}, ${site.postalCode} ${site.city}`,
+);
 
 export const maps = {
-  embed: (lang: string) => `https://www.google.com/maps?q=${addressQuery}&hl=${lang}&output=embed`,
-  directions: `https://www.google.com/maps/dir/?api=1&destination=${addressQuery}`,
+  embed: (lang: string) => `https://www.google.com/maps?q=${mapsQuery}&hl=${lang}&output=embed`,
+  directions: `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`,
+  /** Listing page; falls back to a search for the same query. */
+  place: optional('GOOGLE_MAPS_URL') || `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`,
 };
 
 const base = String(import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');

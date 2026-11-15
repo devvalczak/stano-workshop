@@ -14,11 +14,10 @@ const { t, section } = useTranslations(lang);
 
 const links = [
   { href: section('services'), label: t.nav.services },
-  { href: href('pricing', lang), label: t.nav.pricing, current: pageId === 'pricing' },
   { href: section('about'), label: t.nav.about },
   { href: section('gallery'), label: t.nav.gallery },
   { href: section('reviews'), label: t.nav.reviews },
-  { href: href('pricing', lang, t.anchors.faq), label: t.nav.faq },
+  { href: section('faq'), label: t.nav.faq },
   { href: section('contact'), label: t.nav.contact },
 ];
 
@@ -37,15 +36,7 @@ const iconButton = 'grid h-11 w-11 place-items-center border border-graphite hov
       {
         links.map((l) => (
           <li>
-            <a
-              href={l.href}
-              class:list={[
-                l.current
-                  ? 'text-chalk underline decoration-caliper decoration-2 underline-offset-8'
-                  : 'hover:text-chalk',
-              ]}
-              aria-current={l.current ? 'page' : undefined}
-            >
+            <a href={l.href} class="hover:text-chalk">
               {l.label}
             </a>
           </li>
@@ -106,15 +97,7 @@ const iconButton = 'grid h-11 w-11 place-items-center border border-graphite hov
       {
         links.map((l, i) => (
           <li>
-            <a
-              href={l.href}
-              class:list={[
-                'block py-3',
-                i < links.length - 1 && 'border-b border-graphite/60',
-                l.current && 'text-caliper',
-              ]}
-              aria-current={l.current ? 'page' : undefined}
-            >
+            <a href={l.href} class:list={['block py-3', i < links.length - 1 && 'border-b border-graphite/60']}>
               {l.label}
             </a>
           </li>

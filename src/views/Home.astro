@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
 import Band from '../components/Band.astro';
 import Icon from '../components/Icon.astro';
+import Faq from '../components/Faq.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import type { IconName } from '../components/icons';
 import logo from '../assets/logo.jpg';
 import services from '../data/services.json';
@@ -12,7 +14,7 @@ import reviews from '../data/reviews.json';
 import { loadGallery } from '../lib/gallery';
 import { localBusiness } from '../lib/structured-data';
 import { site, maps } from '../site';
-import { href, useTranslations, type Lang } from '../i18n';
+import { useTranslations, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -103,12 +105,11 @@ const contactDetails = [
     <div>
       <h2 class="title-section">{h.services.title}</h2>
       <p class="mt-5 max-w-sm lead">{h.services.lead}</p>
-      <a href={href('pricing', lang)} class="mt-6 btn btn-outline">{h.services.seePricing}</a>
     </div>
 
     <ul class="grid gap-x-12 sm:grid-cols-2">
       {
-        services.map(({ id }) => (
+        services.map((id) => (
           <li class="flex gap-4 border-b border-graphite py-6">
             <Icon name="chevron" class="mt-1 h-6 w-6 shrink-0 text-caliper" />
             <div>
@@ -227,7 +228,15 @@ const contactDetails = [
     </ul>
   </Section>
 
-  <Section id={t.anchors.contact} inner="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
+  <Section id={t.anchors.faq} inner="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
+    <div>
+      <h2 class="title-section">{t.faq.title}</h2>
+      <p class="mt-5 max-w-sm lead">{t.faq.lead}</p>
+    </div>
+    <Faq lang={lang} />
+  </Section>
+
+  <Section id={t.anchors.contact} tone="raised" inner="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
     <div>
       <h2 class="title-section">{h.contact.title}</h2>
       <dl class="mt-8 space-y-6 text-lg">
@@ -240,23 +249,22 @@ const contactDetails = [
           ))
         }
       </dl>
-      <a href={maps.directions} target="_blank" rel="noopener" class="mt-8 btn btn-outline">{h.contact.directions}</a>
+      <div class="mt-8 flex flex-wrap items-stretch gap-3">
+        <a href={maps.directions} target="_blank" rel="noopener" class="btn btn-outline">{h.contact.directions}</a>
+        <SocialLinks lang={lang} />
+      </div>
     </div>
 
-    <!-- Placeholder replaced by the map iframe on click (main.js), so no third-party request happens before consent. -->
-    <div id="map-wrap" class="min-h-[320px] overflow-hidden border border-graphite">
+    <!-- main.js swaps the placeholder for the iframe only after consent, so no request reaches Google before that. -->
+    <div
+      data-consent-embed
+      data-src={maps.embed(lang)}
+      data-title={h.contact.mapTitle}
+      class="min-h-[320px] overflow-hidden border border-graphite"
+    >
       <div class="tile-ph flex h-full min-h-[320px] flex-col items-center justify-center gap-4 p-6 text-center">
         <Icon name="pin" class="h-12 w-12 text-caliper" />
-        <button
-          id="map-load"
-          type="button"
-          class="btn btn-primary"
-          data-src={maps.embed(lang)}
-          data-title={h.contact.mapTitle}
-        >
-          {h.contact.mapLoad}
-        </button>
-        <p class="max-w-xs text-sm text-silver">{h.contact.mapNote}</p>
+        <button type="button" class="btn btn-primary" data-consent="granted">{h.contact.mapLoad}</button>
       </div>
     </div>
 

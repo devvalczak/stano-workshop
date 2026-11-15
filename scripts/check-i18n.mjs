@@ -47,12 +47,8 @@ for (const [lang, dict] of Object.entries(locales)) {
 const services = readJson(DATA_DIR, 'services.json');
 const perks = readJson(DATA_DIR, 'perks.json');
 for (const [lang, dict] of Object.entries(locales)) {
-  for (const { id, prices } of services) {
+  for (const id of services) {
     if (!dict.services?.[id]) errors.push(`${lang}: services.${id} missing (src/data/services.json)`);
-    for (const item of prices) {
-      if (!dict.pricing?.names?.[item.id])
-        errors.push(`${lang}: pricing.names.${item.id} missing (src/data/services.json)`);
-    }
   }
   for (const id of perks) {
     if (!dict.home?.perks?.items?.[id]) errors.push(`${lang}: home.perks.items.${id} missing (src/data/perks.json)`);

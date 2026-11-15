@@ -34,7 +34,6 @@
   },
   "nav": {
     "services": "Services",
-    "pricing": "Pricing",
     "about": "About",
     "gallery": "Gallery",
     "reviews": "Reviews",
@@ -87,8 +86,7 @@
     },
     "services": {
       "title": "What we fix",
-      "lead": "From routine servicing to major mechanical repairs. Don’t see your problem on the list? Call and ask.",
-      "seePricing": "See pricing"
+      "lead": "From routine servicing to major mechanical repairs. Don’t see your problem on the list? Call and ask."
     },
     "perks": {
       "title": "Why {name}",
@@ -124,44 +122,8 @@
       "title": "Contact",
       "directions": "Get directions in Google Maps",
       "mapLoad": "Show map",
-      "mapNote": "The map loads from Google Maps, which may set cookies.",
       "mapTitle": "Map to {name}, {street}, {city}",
       "band": "Get in touch!"
-    }
-  },
-  "pricing": {
-    "meta": {
-      "title": "Pricing and FAQ – {name}, {city}",
-      "description": "Indicative prices for services at {name} in {city}, Poland, and answers to frequently asked questions. Phone {phone}."
-    },
-    "breadcrumb": "Pricing and FAQ",
-    "title": "Pricing",
-    "lead": "Indicative labour prices, parts not included. The cost depends on the car model, so we give you an exact quote before starting the repair.",
-    "toFaq": "Frequently asked questions",
-    "from": "from",
-    "currency": "PLN",
-    "perHour": "PLN/h",
-    "names": {
-      "oil-change": "Engine oil and filter change",
-      "air-filter": "Air filter replacement",
-      "cabin-filter": "Cabin filter replacement",
-      "fuel-filter": "Fuel filter replacement",
-      "shocks": "Shock absorber replacement (axle)",
-      "control-arm": "Control arm replacement (each)",
-      "stabilizer-links": "Stabilizer link replacement (pair)",
-      "clutch-kit": "Clutch kit replacement",
-      "clutch-dmf": "Clutch and dual-mass flywheel replacement",
-      "timing-belt": "Timing belt and water pump replacement",
-      "timing-chain": "Timing chain replacement",
-      "fault-codes": "Reading and clearing fault codes",
-      "fault-diagnosis": "Fault diagnosis with live data analysis",
-      "brake-pads": "Brake pad replacement (axle)",
-      "brake-discs-pads": "Brake disc and pad replacement (axle)",
-      "labour-hour": "Hourly labour rate for other repairs"
-    },
-    "cta": {
-      "title": "Don’t see your repair here?",
-      "text": "Call and describe the problem. We’ll give you a rough idea of the cost."
     }
   },
   "faq": {
@@ -178,8 +140,8 @@
         "a": "{schedule}. The workshop is at {street}, {city}."
       },
       {
-        "q": "Is the price list final?",
-        "a": "No. The price list shows indicative labour prices. Before the repair we tell you what needs doing and what it will cost, parts included."
+        "q": "How much does a repair cost?",
+        "a": "It depends on the fault and the car model. Before the repair we tell you what needs doing and what it will cost, parts included."
       },
       {
         "q": "How long does a repair take?",
@@ -218,5 +180,16 @@
     "text": "The address may have changed or contain a typo. Go back to the home page or give us a call.",
     "home": "Home page",
     "otherLang": "English version"
+  },
+  "consent": {
+    "label": "Cookie consent",
+    "text": "The directions map comes from Google Maps, which sets cookies when it loads. Without consent the map stays off; the rest of the site works as usual.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "settings": "Cookie settings"
+  },
+  "social": {
+    "facebook": "{name} on Facebook",
+    "google": "{name} on Google Maps"
   }
 }
