@@ -1,0 +1,31 @@
+---
+// Full-width page section with a centered content column.
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'section'> {
+  tone?: 'base' | 'raised' | 'lines';
+  /** false → no top border (first section on a page). */
+  divider?: boolean;
+  /** Overrides the default vertical padding of the inner column. */
+  padding?: string;
+  /** Extra classes for the inner column (grid layouts etc.). */
+  inner?: string;
+}
+
+const { tone = 'base', divider = true, padding = 'py-20 sm:py-28', inner, class: className, ...attrs } = Astro.props;
+---
+
+<section
+  class:list={[
+    divider && 'border-t border-graphite',
+    tone === 'raised' && 'bg-steel',
+    tone === 'lines' && 'speedlines',
+    className,
+  ]}
+  {...attrs}
+>
+  <div class:list={['mx-auto max-w-page px-4 sm:px-6', padding, inner]}>
+    <slot />
+  </div>
+  <slot name="after" />
+</section>

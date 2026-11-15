@@ -1,0 +1,128 @@
+---
+import Icon from './Icon.astro';
+import Wordmark from './Wordmark.astro';
+import { site } from '../site';
+import { href, languages, locales, useTranslations, type Lang, type PageId } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  pageId?: PageId;
+}
+
+const { lang, pageId } = Astro.props;
+const { t, section } = useTranslations(lang);
+
+const links = [
+  { href: section('services'), label: t.nav.services },
+  { href: href('pricing', lang), label: t.nav.pricing, current: pageId === 'pricing' },
+  { href: section('about'), label: t.nav.about },
+  { href: section('gallery'), label: t.nav.gallery },
+  { href: section('reviews'), label: t.nav.reviews },
+  { href: href('pricing', lang, t.anchors.faq), label: t.nav.faq },
+  { href: section('contact'), label: t.nav.contact },
+];
+
+/** Same page in another language; pages outside `routes` (404) fall back to home. */
+const langHref = (l: Lang) => href(pageId ?? 'home', l);
+const iconButton = 'grid h-11 w-11 place-items-center border border-graphite hover:border-silver';
+---
+
+<header class="sticky top-0 z-40 border-b border-graphite/70 bg-asphalt/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-page items-center justify-between gap-3 px-4 py-2 sm:px-6" aria-label={t.a11y.nav}>
+    <a href={href('home', lang)} class="flex items-center py-3" aria-label={t.a11y.home}>
+      <Wordmark class="text-2xl sm:text-3xl" />
+    </a>
+
+    <ul class="hidden items-center gap-6 text-[15px] font-medium text-silver lg:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class:list={[
+                l.current
+                  ? 'text-chalk underline decoration-caliper decoration-2 underline-offset-8'
+                  : 'hover:text-chalk',
+              ]}
+              aria-current={l.current ? 'page' : undefined}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <a href={site.phoneHref} class="btn-compact hidden btn-primary xl:inline-block">{t.nav.call}</a>
+
+      <div class="flex h-11 border border-graphite text-sm font-semibold" role="group" aria-label={t.a11y.lang}>
+        {
+          languages.map((l) => (
+            <a
+              href={langHref(l)}
+              class="lang-btn grid w-10 place-items-center"
+              hreflang={l}
+              lang={l}
+              aria-label={locales[l].langName}
+              aria-current={l === lang ? 'true' : undefined}
+            >
+              {l.toUpperCase()}
+            </a>
+          ))
+        }
+      </div>
+
+      <button
+        id="theme-btn"
+        type="button"
+        class={iconButton}
+        aria-label={t.a11y.themeToLight}
+        data-label-to-light={t.a11y.themeToLight}
+        data-label-to-dark={t.a11y.themeToDark}
+      >
+        <Icon name="sun" class="icon-sun h-5 w-5" />
+        <Icon name="moon" class="icon-moon h-5 w-5" />
+      </button>
+
+      <button
+        id="menu-btn"
+        type="button"
+        class:list={[iconButton, 'lg:hidden']}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={t.a11y.menuOpen}
+        data-label-open={t.a11y.menuOpen}
+        data-label-close={t.a11y.menuClose}
+      >
+        <Icon name="menu" class="i-open h-6 w-6" />
+        <Icon name="close" class="i-close hidden h-6 w-6" />
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden border-t border-graphite bg-asphalt lg:hidden">
+    <ul class="mx-auto flex max-w-page flex-col px-4 py-2 text-lg">
+      {
+        links.map((l, i) => (
+          <li>
+            <a
+              href={l.href}
+              class:list={[
+                'block py-3',
+                i < links.length - 1 && 'border-b border-graphite/60',
+                l.current && 'text-caliper',
+              ]}
+              aria-current={l.current ? 'page' : undefined}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-1 pb-3">
+        <a href={site.phoneHref} class="btn w-full btn-primary text-center">{t.nav.call}</a>
+      </li>
+    </ul>
+  </div>
+</header>

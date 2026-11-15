@@ -1,0 +1,79 @@
+# lint → build → deploy. Pull requests run lint and build only; pushes to main also deploy.
+# One-time repository setup:
+#   - Settings → Pages → Build and deployment → Source: GitHub Actions
+#   - Secret ENV_FILE with the full contents of .env:  gh secret set ENV_FILE < .env
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # Static checks need syntactically valid settings only, so placeholder values are enough.
+      - run: cp .env.example .env
+      - name: ESLint + i18n consistency
+        run: npm run lint
+      - name: Prettier
+        run: npm run format:check
+      - name: Type check
+        run: npm run typecheck
+
+  build:
+    name: Build
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Create .env from the ENV_FILE secret
+        env:
+          ENV_FILE: ${{ secrets.ENV_FILE }}
+        run: |
+          if [ -z "$ENV_FILE" ]; then
+            echo "::error::Secret ENV_FILE is not set. Run: gh secret set ENV_FILE < .env"
+            exit 1
+          fi
+          printf '%s\n' "$ENV_FILE" > .env
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: build
+
+  deploy:
+    name: Deploy
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,30 @@
+---
+// Accordion built on native <details>; answers may contain HTML from placeholders such as {phoneLink}.
+import Icon from './Icon.astro';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { t } = useTranslations(Astro.props.lang);
+const items: { q: string; a: string | null }[] = t.faq.items;
+---
+
+<div class="border-t border-graphite">
+  {
+    items.map((item) => (
+      <details class="group border-b border-graphite">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 [&::-webkit-details-marker]:hidden">
+          <span class="text-2xl display-md sm:text-3xl">{item.q}</span>
+          <Icon name="plus" class="h-6 w-6 shrink-0 text-caliper transition-transform group-open:rotate-45" />
+        </summary>
+        {item.a ? (
+          <p class="max-w-prose pb-6 lead" set:html={item.a} />
+        ) : (
+          <p class="max-w-prose pb-6 lead italic opacity-70">{t.faq.todo}</p>
+        )}
+      </details>
+    ))
+  }
+</div>

@@ -1,0 +1,222 @@
+{
+  "lang": "pl",
+  "ogLocale": "pl_PL",
+  "langName": "Polski",
+  "anchors": {
+    "services": "uslugi",
+    "about": "o-nas",
+    "gallery": "galeria",
+    "reviews": "opinie",
+    "contact": "kontakt",
+    "faq": "faq"
+  },
+  "days": {
+    "Mo": "pon.",
+    "Tu": "wt.",
+    "We": "śr.",
+    "Th": "czw.",
+    "Fr": "pt.",
+    "Sa": "sob.",
+    "Su": "niedz."
+  },
+  "a11y": {
+    "skip": "Przejdź do treści",
+    "nav": "Główna nawigacja",
+    "home": "{name} – strona główna",
+    "lang": "Język strony",
+    "closePreview": "Zamknij podgląd",
+    "menuOpen": "Otwórz menu",
+    "menuClose": "Zamknij menu",
+    "themeToLight": "Włącz jasny motyw",
+    "themeToDark": "Włącz ciemny motyw",
+    "callLabel": "Zadzwoń: {phone}",
+    "enlarge": "Powiększ zdjęcie"
+  },
+  "nav": {
+    "services": "Usługi",
+    "pricing": "Cennik",
+    "about": "O nas",
+    "gallery": "Galeria",
+    "reviews": "Opinie",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "call": "Zadzwoń {phone}"
+  },
+  "info": {
+    "hours": "Godziny otwarcia",
+    "address": "Adres",
+    "phone": "Telefon",
+    "tel": "tel."
+  },
+  "services": {
+    "oil": {
+      "title": "Wymiana olejów i filtrów",
+      "desc": "Olej silnikowy, filtry oleju, powietrza, kabinowy i paliwa."
+    },
+    "susp": {
+      "title": "Naprawa zawieszenia",
+      "desc": "Amortyzatory, sprężyny, wahacze, tuleje i łączniki stabilizatora."
+    },
+    "clutch": {
+      "title": "Sprzęgła",
+      "desc": "Wymiana tarczy, docisku, łożyska i koła dwumasowego."
+    },
+    "timing": {
+      "title": "Rozrządy",
+      "desc": "Paski i łańcuchy rozrządu wraz z napinaczami i pompą wody."
+    },
+    "diag": {
+      "title": "Diagnostyka komputerowa",
+      "desc": "Odczyt i kasowanie błędów, kontrolki na desce, analiza parametrów silnika."
+    },
+    "general": {
+      "title": "Naprawy bieżące",
+      "desc": "Hamulce, układ wydechowy, drobne usterki i wszystko, co wypadnie po drodze."
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "{name} – warsztat samochodowy w {city}",
+      "description": "{name} – profesjonalny serwis samochodowy w {cityLocative}. Wymiana olejów i filtrów, zawieszenie, sprzęgła, rozrządy, diagnostyka komputerowa. Tel. {phone}."
+    },
+    "hero": {
+      "kicker": "Warsztat samochodowy w {cityLocative}",
+      "title": "Profesjonalny serwis<br class=\"hidden sm:block\"> Twojego samochodu",
+      "seeServices": "Zobacz usługi",
+      "directions": "Wyznacz trasę"
+    },
+    "services": {
+      "title": "Co naprawiamy",
+      "lead": "Od przeglądu po poważniejsze naprawy mechaniczne. Nie widzisz swojej usterki na liście? Zadzwoń i zapytaj.",
+      "seePricing": "Zobacz cennik"
+    },
+    "perks": {
+      "title": "Dlaczego {name}",
+      "items": {
+        "quality": "Solidnie i profesjonalnie",
+        "fast": "Szybko i terminowo",
+        "individual": "Indywidualne podejście",
+        "guarantee": "Gwarancja jakości"
+      }
+    },
+    "about": {
+      "title": "O warsztacie",
+      "paragraphs": [
+        "{name} to warsztat samochodowy w {cityLocative}, przy ulicy {street}. Zajmujemy się mechaniką pojazdów osobowych: od wymiany oleju po naprawy zawieszenia, sprzęgieł i rozrządów.",
+        "Przed naprawą mówimy, co jest do zrobienia i ile to będzie kosztować. Samochód odbierasz w umówionym terminie."
+      ],
+      "cta": "Umów wizytę",
+      "logoAlt": "Logo {name} – warsztat samochodowy"
+    },
+    "gallery": {
+      "title": "Z warsztatu",
+      "lead": "Zdjęcia z napraw wykonanych w {name}.",
+      "placeholder": "Miejsce na zdjęcie"
+    },
+    "reviews": {
+      "title": "Opinie klientów",
+      "rating": "Ocena: {rating} na 5",
+      "placeholder": "Tu pojawi się treść opinii klienta.",
+      "placeholderName": "Imię klienta",
+      "placeholderRating": "Ocena: do uzupełnienia"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "directions": "Wyznacz trasę w Google Maps",
+      "mapLoad": "Pokaż mapę",
+      "mapNote": "Mapa ładuje się z Google Maps, który może zapisywać pliki cookies.",
+      "mapTitle": "Mapa dojazdu do {name}, {street}, {city}",
+      "band": "Zapraszam do kontaktu!"
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "Cennik i FAQ – {name}, {city}",
+      "description": "Orientacyjny cennik usług warsztatu {name} w {cityLocative} oraz odpowiedzi na najczęstsze pytania klientów. Tel. {phone}."
+    },
+    "breadcrumb": "Cennik i FAQ",
+    "title": "Cennik",
+    "lead": "Ceny orientacyjne za robociznę, bez części. Koszt zależy od modelu auta, więc dokładną wycenę podajemy przed rozpoczęciem naprawy.",
+    "toFaq": "Najczęstsze pytania",
+    "from": "od",
+    "currency": "zł",
+    "perHour": "zł/h",
+    "names": {
+      "oil-change": "Wymiana oleju silnikowego z filtrem",
+      "air-filter": "Wymiana filtra powietrza",
+      "cabin-filter": "Wymiana filtra kabinowego",
+      "fuel-filter": "Wymiana filtra paliwa",
+      "shocks": "Wymiana amortyzatorów (oś)",
+      "control-arm": "Wymiana wahacza (szt.)",
+      "stabilizer-links": "Wymiana łączników stabilizatora (para)",
+      "clutch-kit": "Wymiana kompletu sprzęgła",
+      "clutch-dmf": "Wymiana sprzęgła z kołem dwumasowym",
+      "timing-belt": "Wymiana paska rozrządu z pompą wody",
+      "timing-chain": "Wymiana łańcucha rozrządu",
+      "fault-codes": "Odczyt i kasowanie błędów",
+      "fault-diagnosis": "Diagnostyka usterki z analizą parametrów",
+      "brake-pads": "Wymiana klocków hamulcowych (oś)",
+      "brake-discs-pads": "Wymiana tarcz i klocków hamulcowych (oś)",
+      "labour-hour": "Roboczogodzina przy innych naprawach"
+    },
+    "cta": {
+      "title": "Nie ma tu Twojej naprawy?",
+      "text": "Zadzwoń i opisz usterkę. Powiemy, ile mniej więcej to będzie kosztować."
+    }
+  },
+  "faq": {
+    "title": "Najczęstsze pytania",
+    "lead": "Nie ma tu odpowiedzi na Twoje pytanie? Zadzwoń, wyjaśnimy.",
+    "todo": "[Do uzupełnienia]",
+    "items": [
+      {
+        "q": "Czy trzeba się wcześniej umówić?",
+        "a": "Najlepiej zadzwonić wcześniej pod numer {phoneLink}. Ustalimy termin i powiemy, ile mniej więcej potrwa naprawa."
+      },
+      {
+        "q": "W jakich godzinach jest otwarty warsztat?",
+        "a": "{schedule}. Warsztat mieści się przy ulicy {street} w {cityLocative}."
+      },
+      {
+        "q": "Czy cena z cennika jest ostateczna?",
+        "a": "Nie. Cennik pokazuje orientacyjne ceny robocizny. Przed naprawą mówimy, co jest do zrobienia i ile to będzie kosztować, razem z częściami."
+      },
+      {
+        "q": "Ile trwa naprawa?",
+        "a": "To zależy od usterki i dostępności części. Termin odbioru ustalamy przed rozpoczęciem pracy."
+      },
+      {
+        "q": "Czy mogę przywieźć własne części?",
+        "a": null
+      },
+      {
+        "q": "Czy naprawa jest objęta gwarancją?",
+        "a": null
+      },
+      {
+        "q": "Jakie są formy płatności?",
+        "a": null
+      },
+      {
+        "q": "Jakie marki samochodów naprawiacie?",
+        "a": null
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Warsztat samochodowy"
+  },
+  "notFound": {
+    "meta": {
+      "title": "Nie znaleziono strony – {name}"
+    },
+    "title": "Tej strony tu nie ma",
+    "text": "Adres mógł się zmienić albo zawiera literówkę. Wróć na stronę główną albo zadzwoń.",
+    "home": "Strona główna",
+    "otherLang": "Wersja polska"
+  },
+  "schedule": {
+    "withDays": "{days} od {open} do {close}",
+    "noDays": "Od {open} do {close}"
+  }
+}

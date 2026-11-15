@@ -1,0 +1,33 @@
+---
+// Static hosts serve build/404.html for unknown paths. Rendered in the default
+// language with links to every other language version.
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import { site } from '../site';
+import { defaultLang, href, languages, locales, useTranslations } from '../i18n';
+
+const { t } = useTranslations(defaultLang);
+const others = languages.filter((l) => l !== defaultLang);
+---
+
+<Base lang={defaultLang} title={t.notFound.meta.title}>
+  <Section tone="lines" divider={false} padding="py-24 sm:py-32">
+    <p class="text-[6rem] display text-caliper sm:text-[9rem]">404</p>
+    <h1 class="mt-2 text-5xl display sm:text-7xl">{t.notFound.title}</h1>
+    <p class="mt-5 max-w-xl lead">{t.notFound.text}</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href={href('home', defaultLang)} class="btn btn-primary">{t.notFound.home}</a>
+      <a href={site.phoneHref} class="btn btn-outline">{site.phone}</a>
+    </div>
+    {
+      others.map((l) => (
+        <p class="mt-12 text-silver" lang={l}>
+          {locales[l].notFound.title}.{' '}
+          <a class="font-semibold text-chalk underline decoration-caliper underline-offset-4" href={href('home', l)}>
+            {locales[l].notFound.otherLang}
+          </a>
+        </p>
+      ))
+    }
+  </Section>
+</Base>

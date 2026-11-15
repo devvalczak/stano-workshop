@@ -1,0 +1,188 @@
+@import 'tailwindcss';
+
+/* Theme is driven by the data-theme attribute on <html>, not by the OS preference. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Tailwind color utilities resolve to the RGB-channel variables below, so opacity modifiers (bg-asphalt/90) work in both themes. */
+@theme inline {
+  --color-asphalt: rgb(var(--asphalt));
+  --color-steel: rgb(var(--steel));
+  --color-graphite: rgb(var(--graphite));
+  --color-caliper: rgb(var(--caliper));
+  --color-caliper-hot: rgb(var(--caliper-hot));
+  --color-silver: rgb(var(--silver));
+  --color-chalk: rgb(var(--chalk));
+  --font-sans: Saira, system-ui, sans-serif;
+  --container-page: 76rem;
+}
+
+/* Color tokens as space-separated RGB channels. */
+:root,
+[data-theme='dark'] {
+  --asphalt: 14 15 17; /* page background */
+  --steel: 26 28 32; /* raised surfaces */
+  --graphite: 42 45 51; /* borders */
+  --caliper: 225 20 10; /* accent */
+  --caliper-hot: 255 42 31; /* accent hover */
+  --silver: 195 199 205; /* secondary text */
+  --chalk: 245 246 247; /* primary text */
+  color-scheme: dark;
+}
+[data-theme='light'] {
+  --asphalt: 244 245 246;
+  --steel: 231 233 236;
+  --graphite: 203 208 214;
+  --caliper: 208 17 8; /* darker than dark-theme accent to keep AA contrast on light backgrounds */
+  --caliper-hot: 168 14 6;
+  --silver: 74 79 87;
+  --chalk: 17 18 20;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+body {
+  background: rgb(var(--asphalt));
+  color: rgb(var(--chalk));
+  font-family: Saira, system-ui, sans-serif;
+  font-stretch: 100%;
+}
+
+/* ---------- Typography ---------- */
+@utility display {
+  font-style: italic;
+  font-weight: 800;
+  font-stretch: 62%;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+@utility display-md {
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: 70%;
+  line-height: 1;
+}
+@utility title-page {
+  @apply text-[3.6rem] display sm:text-[5.5rem];
+}
+@utility title-section {
+  @apply text-6xl display sm:text-7xl;
+}
+@utility lead {
+  @apply text-lg leading-relaxed text-silver;
+}
+
+/* ---------- Buttons ---------- */
+@utility btn {
+  @apply inline-block px-5 py-3 font-semibold transition-colors;
+}
+@utility btn-compact {
+  @apply inline-block px-4 py-2 font-semibold transition-colors;
+}
+@utility btn-primary {
+  @apply bg-caliper text-white hover:bg-caliper-hot;
+}
+@utility btn-outline {
+  @apply border border-silver/40 hover:border-chalk;
+}
+
+/* ---------- Skewed accent band (Band.astro) ---------- */
+.band {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+}
+.band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(var(--caliper));
+  transform: skewX(-14deg);
+}
+.band-wipe::before {
+  animation: wipe 0.9s cubic-bezier(0.7, 0, 0.2, 1) 0.15s both;
+}
+.band-wipe > * {
+  animation: rise 0.5s ease-out 0.75s both;
+}
+@keyframes wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Background patterns ---------- */
+.speedlines {
+  background-image: repeating-linear-gradient(-14deg, transparent 0 46px, rgb(var(--silver) / 0.06) 46px 47px);
+}
+.tile-ph {
+  background:
+    repeating-linear-gradient(-14deg, rgb(var(--caliper) / 0.09) 0 2px, transparent 2px 18px), rgb(var(--steel));
+}
+
+/* Images with a black background: hide the background in dark theme, show them as a dark plate in light theme. */
+.logo-blend {
+  mix-blend-mode: lighten;
+}
+[data-theme='light'] .logo-blend {
+  mix-blend-mode: normal;
+  border-radius: 6px;
+}
+
+/* Darkens third-party map embeds in dark theme. */
+[data-theme='dark'] .map-frame {
+  filter: invert(90%) hue-rotate(180deg) grayscale(60%);
+}
+
+/* Theme toggle shows the icon of the theme it switches to. */
+[data-theme='dark'] .icon-moon,
+[data-theme='light'] .icon-sun {
+  display: none;
+}
+
+.lang-btn[aria-current] {
+  background: rgb(var(--chalk));
+  color: rgb(var(--asphalt));
+}
+
+/* Fixed bottom bar; main.js toggles data-visible. */
+.callbar {
+  transition: transform 0.25s ease-out;
+}
+.callbar[data-visible='false'] {
+  transform: translateY(110%);
+}
+
+:focus-visible {
+  outline: 3px solid rgb(var(--caliper-hot));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .band-wipe::before,
+  .band-wipe > *,
+  .callbar {
+    animation: none;
+    transition: none;
+  }
+}

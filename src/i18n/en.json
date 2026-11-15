@@ -1,0 +1,222 @@
+{
+  "lang": "en",
+  "ogLocale": "en_GB",
+  "langName": "English",
+  "anchors": {
+    "services": "services",
+    "about": "about",
+    "gallery": "gallery",
+    "reviews": "reviews",
+    "contact": "contact",
+    "faq": "faq"
+  },
+  "days": {
+    "Mo": "Mon",
+    "Tu": "Tue",
+    "We": "Wed",
+    "Th": "Thu",
+    "Fr": "Fri",
+    "Sa": "Sat",
+    "Su": "Sun"
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "nav": "Main navigation",
+    "home": "{name} – home",
+    "lang": "Page language",
+    "closePreview": "Close preview",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "themeToLight": "Switch to light mode",
+    "themeToDark": "Switch to dark mode",
+    "callLabel": "Call: {phone}",
+    "enlarge": "Enlarge photo"
+  },
+  "nav": {
+    "services": "Services",
+    "pricing": "Pricing",
+    "about": "About",
+    "gallery": "Gallery",
+    "reviews": "Reviews",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "call": "Call {phone}"
+  },
+  "info": {
+    "hours": "Opening hours",
+    "address": "Address",
+    "phone": "Phone",
+    "tel": "phone"
+  },
+  "services": {
+    "oil": {
+      "title": "Oil and filter change",
+      "desc": "Engine oil plus oil, air, cabin and fuel filters."
+    },
+    "susp": {
+      "title": "Suspension repair",
+      "desc": "Shock absorbers, springs, control arms, bushings and stabilizer links."
+    },
+    "clutch": {
+      "title": "Clutches",
+      "desc": "Clutch disc, pressure plate, release bearing and dual-mass flywheel replacement."
+    },
+    "timing": {
+      "title": "Timing belts and chains",
+      "desc": "Timing belts and chains, with tensioners and water pump."
+    },
+    "diag": {
+      "title": "Computer diagnostics",
+      "desc": "Reading and clearing fault codes, dashboard warning lights, engine data analysis."
+    },
+    "general": {
+      "title": "General repairs",
+      "desc": "Brakes, exhaust system, minor faults and whatever comes up on the road."
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "{name} – car repair workshop in {city}",
+      "description": "{name} – professional car service in {city}, Poland. Oil and filter changes, suspension, clutches, timing belts, computer diagnostics. Phone {phone}."
+    },
+    "hero": {
+      "kicker": "Car repair workshop in {city}",
+      "title": "Professional service<br class=\"hidden sm:block\"> for your car",
+      "seeServices": "See services",
+      "directions": "Get directions"
+    },
+    "services": {
+      "title": "What we fix",
+      "lead": "From routine servicing to major mechanical repairs. Don’t see your problem on the list? Call and ask.",
+      "seePricing": "See pricing"
+    },
+    "perks": {
+      "title": "Why {name}",
+      "items": {
+        "quality": "Solid and professional",
+        "fast": "Fast and on time",
+        "individual": "Individual approach",
+        "guarantee": "Quality guarantee"
+      }
+    },
+    "about": {
+      "title": "About the workshop",
+      "paragraphs": [
+        "{name} is a car repair workshop in {city}, at {street}. We service passenger cars: from oil changes to suspension, clutch and timing repairs.",
+        "Before any repair we tell you what needs doing and what it will cost. You pick up your car on the agreed date."
+      ],
+      "cta": "Book a visit",
+      "logoAlt": "{name} logo – car repair workshop"
+    },
+    "gallery": {
+      "title": "From the workshop",
+      "lead": "Photos of repairs done at {name}.",
+      "placeholder": "Photo placeholder"
+    },
+    "reviews": {
+      "title": "Customer reviews",
+      "rating": "Rating: {rating} out of 5",
+      "placeholder": "A customer review will appear here.",
+      "placeholderName": "Customer name",
+      "placeholderRating": "Rating: to be added"
+    },
+    "contact": {
+      "title": "Contact",
+      "directions": "Get directions in Google Maps",
+      "mapLoad": "Show map",
+      "mapNote": "The map loads from Google Maps, which may set cookies.",
+      "mapTitle": "Map to {name}, {street}, {city}",
+      "band": "Get in touch!"
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "Pricing and FAQ – {name}, {city}",
+      "description": "Indicative prices for services at {name} in {city}, Poland, and answers to frequently asked questions. Phone {phone}."
+    },
+    "breadcrumb": "Pricing and FAQ",
+    "title": "Pricing",
+    "lead": "Indicative labour prices, parts not included. The cost depends on the car model, so we give you an exact quote before starting the repair.",
+    "toFaq": "Frequently asked questions",
+    "from": "from",
+    "currency": "PLN",
+    "perHour": "PLN/h",
+    "names": {
+      "oil-change": "Engine oil and filter change",
+      "air-filter": "Air filter replacement",
+      "cabin-filter": "Cabin filter replacement",
+      "fuel-filter": "Fuel filter replacement",
+      "shocks": "Shock absorber replacement (axle)",
+      "control-arm": "Control arm replacement (each)",
+      "stabilizer-links": "Stabilizer link replacement (pair)",
+      "clutch-kit": "Clutch kit replacement",
+      "clutch-dmf": "Clutch and dual-mass flywheel replacement",
+      "timing-belt": "Timing belt and water pump replacement",
+      "timing-chain": "Timing chain replacement",
+      "fault-codes": "Reading and clearing fault codes",
+      "fault-diagnosis": "Fault diagnosis with live data analysis",
+      "brake-pads": "Brake pad replacement (axle)",
+      "brake-discs-pads": "Brake disc and pad replacement (axle)",
+      "labour-hour": "Hourly labour rate for other repairs"
+    },
+    "cta": {
+      "title": "Don’t see your repair here?",
+      "text": "Call and describe the problem. We’ll give you a rough idea of the cost."
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "lead": "Can’t find your answer here? Give us a call.",
+    "todo": "[To be completed]",
+    "items": [
+      {
+        "q": "Do I need to book in advance?",
+        "a": "It’s best to call ahead on {phoneLink}. We’ll agree on a date and tell you roughly how long the repair will take."
+      },
+      {
+        "q": "What are your opening hours?",
+        "a": "{schedule}. The workshop is at {street}, {city}."
+      },
+      {
+        "q": "Is the price list final?",
+        "a": "No. The price list shows indicative labour prices. Before the repair we tell you what needs doing and what it will cost, parts included."
+      },
+      {
+        "q": "How long does a repair take?",
+        "a": "It depends on the fault and on parts availability. We agree on a pick-up date before starting work."
+      },
+      {
+        "q": "Can I bring my own parts?",
+        "a": null
+      },
+      {
+        "q": "Is the repair covered by a guarantee?",
+        "a": null
+      },
+      {
+        "q": "What payment methods do you accept?",
+        "a": null
+      },
+      {
+        "q": "Which car makes do you repair?",
+        "a": null
+      }
+    ]
+  },
+  "schedule": {
+    "withDays": "{days}, {open} to {close}",
+    "noDays": "From {open} to {close}"
+  },
+  "footer": {
+    "tagline": "Car repair workshop"
+  },
+  "notFound": {
+    "meta": {
+      "title": "Page not found – {name}"
+    },
+    "title": "This page isn’t here",
+    "text": "The address may have changed or contain a typo. Go back to the home page or give us a call.",
+    "home": "Home page",
+    "otherLang": "English version"
+  }
+}

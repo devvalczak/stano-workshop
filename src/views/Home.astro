@@ -1,0 +1,281 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Band from '../components/Band.astro';
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../components/icons';
+import logo from '../assets/logo.jpg';
+import services from '../data/services.json';
+import perks from '../data/perks.json';
+import reviews from '../data/reviews.json';
+import { loadGallery } from '../lib/gallery';
+import { localBusiness } from '../lib/structured-data';
+import { site, maps } from '../site';
+import { href, useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { t, f, section, hours } = useTranslations(lang);
+const h = t.home;
+
+type Review = { author: string; rating: number; text: string; lang?: string };
+const reviewList = reviews as Review[];
+const photos = await loadGallery(lang);
+
+const serviceText = t.services as Record<string, { title: string; desc: string }>;
+const perkText = h.perks.items as Record<string, string>;
+
+const PLACEHOLDER_PHOTOS = 6;
+const PLACEHOLDER_REVIEWS = 3;
+const stars = (rating: number) => '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+const contactDetails = [
+  {
+    label: t.info.phone,
+    value: site.phone,
+    href: site.phoneHref,
+    class: 'display-md text-4xl text-caliper sm:text-5xl',
+  },
+  { label: t.info.hours, value: hours, class: 'display-md text-3xl' },
+  { label: t.info.address, value: `${site.street}, ${site.postalCode} ${site.city}`, class: 'text-xl font-semibold' },
+];
+---
+
+<Base
+  lang={lang}
+  pageId="home"
+  title={h.meta.title}
+  description={h.meta.description}
+  jsonLd={[localBusiness(lang)]}
+  callbarRevealAfter="hero-call"
+>
+  <Section
+    tone="lines"
+    divider={false}
+    padding="pt-14 pb-16 sm:pt-20 sm:pb-24 lg:pt-28"
+    inner="relative"
+    class="relative overflow-hidden"
+  >
+    <Icon
+      name="gear"
+      class="pointer-events-none absolute -top-24 -right-24 h-[34rem] w-[34rem] text-graphite/50 sm:-right-10"
+      slot="after"
+    />
+
+    <p class="text-lg text-silver sm:text-xl">{h.hero.kicker}</p>
+    <h1 class="mt-3 text-[3.6rem] display sm:text-[5.5rem] lg:text-[7.5rem]" set:html={h.hero.title} />
+
+    <div class="mt-10 sm:mt-14">
+      <Band
+        id="hero-call"
+        href={site.phoneHref}
+        animated
+        class="inline-flex items-center gap-4 py-3 pr-9 pl-6 sm:gap-6 sm:py-4 sm:pr-14 sm:pl-10"
+        aria-label={t.a11y.callLabel}
+      >
+        <Icon name="phone" class="h-9 w-9 shrink-0 sm:h-12 sm:w-12" />
+        <span class="text-5xl display sm:text-7xl lg:text-8xl">{site.phone}</span>
+      </Band>
+    </div>
+
+    <dl class="mt-10 grid max-w-xl grid-cols-1 gap-x-10 gap-y-4 text-lg sm:grid-cols-2">
+      <div>
+        <dt class="text-silver">{t.info.hours}</dt>
+        <dd class="mt-1 text-3xl display-md">{hours}</dd>
+      </div>
+      <div>
+        <dt class="text-silver">{t.info.address}</dt>
+        <dd class="mt-1 text-xl leading-snug font-semibold">{site.street}<br />{site.postalCode} {site.city}</dd>
+      </div>
+    </dl>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href={section('services')} class="btn btn-outline">{h.hero.seeServices}</a>
+      <a href={maps.directions} target="_blank" rel="noopener" class="btn btn-outline">{h.hero.directions}</a>
+    </div>
+  </Section>
+
+  <Section id={t.anchors.services} tone="raised" inner="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
+    <div>
+      <h2 class="title-section">{h.services.title}</h2>
+      <p class="mt-5 max-w-sm lead">{h.services.lead}</p>
+      <a href={href('pricing', lang)} class="mt-6 btn btn-outline">{h.services.seePricing}</a>
+    </div>
+
+    <ul class="grid gap-x-12 sm:grid-cols-2">
+      {
+        services.map(({ id }) => (
+          <li class="flex gap-4 border-b border-graphite py-6">
+            <Icon name="chevron" class="mt-1 h-6 w-6 shrink-0 text-caliper" />
+            <div>
+              <h3 class="text-3xl display-md">{serviceText[id].title}</h3>
+              <p class="mt-1 text-silver">{serviceText[id].desc}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Section padding="" aria-labelledby="perks-title">
+    <h2 id="perks-title" class="sr-only">{h.perks.title}</h2>
+    <ul class="grid grid-cols-2 lg:grid-cols-4">
+      {
+        perks.map((id, i) => (
+          <li
+            class:list={[
+              'flex flex-col items-center gap-4 border-graphite px-4 py-12 text-center',
+              i < perks.length - 1 && 'lg:border-r',
+            ]}
+          >
+            <Icon name={id as IconName} class="h-14 w-14" />
+            <p class="text-2xl display-md">{perkText[id]}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Section id={t.anchors.about} tone="raised" inner="grid items-center gap-12 lg:grid-cols-2">
+    <div>
+      <h2 class="title-section">{h.about.title}</h2>
+      <div class="mt-6 max-w-prose space-y-4 lead">
+        {h.about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      <a href={section('contact')} class="mt-8 btn btn-primary">{h.about.cta}</a>
+    </div>
+    <div class="flex justify-center">
+      <Picture
+        src={logo}
+        formats={['webp']}
+        fallbackFormat="jpg"
+        widths={[400, 800]}
+        sizes="(min-width: 1024px) 448px, 90vw"
+        alt={h.about.logoAlt}
+        class="logo-blend h-auto w-full"
+        pictureAttributes={{ class: 'w-full max-w-md' }}
+      />
+    </div>
+  </Section>
+
+  <Section id={t.anchors.gallery}>
+    <h2 class="title-section">{h.gallery.title}</h2>
+    <p class="mt-4 max-w-xl lead">{h.gallery.lead}</p>
+
+    <ul class="mt-10 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-3">
+      {
+        photos.length
+          ? photos.map((p) => (
+              <li>
+                <button
+                  type="button"
+                  class="gallery-item group block aspect-[4/3] w-full overflow-hidden"
+                  data-full={p.full}
+                  aria-label={`${t.a11y.enlarge}: ${p.alt}`}
+                >
+                  <Picture
+                    src={p.src}
+                    formats={['webp']}
+                    widths={[400, 800]}
+                    sizes="(min-width: 1024px) 33vw, 50vw"
+                    alt={p.alt}
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </button>
+              </li>
+            ))
+          : Array.from({ length: PLACEHOLDER_PHOTOS }, () => (
+              <li class="tile-ph grid aspect-[4/3] place-items-center text-sm text-silver/70">
+                {h.gallery.placeholder}
+              </li>
+            ))
+      }
+    </ul>
+  </Section>
+
+  <Section id={t.anchors.reviews} tone="raised">
+    <h2 class="title-section">{h.reviews.title}</h2>
+
+    <ul class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        reviewList.length
+          ? reviewList.map((r) => (
+              <li class="border-l-4 border-caliper bg-asphalt p-6">
+                <p class="text-caliper" aria-label={f(h.reviews.rating, { rating: r.rating })}>
+                  {stars(r.rating)}
+                </p>
+                <blockquote class="mt-3 lead" lang={r.lang}>
+                  {r.text}
+                </blockquote>
+                <p class="mt-4 font-semibold">{r.author}</p>
+              </li>
+            ))
+          : Array.from({ length: PLACEHOLDER_REVIEWS }, () => (
+              <li class="border-l-4 border-caliper bg-asphalt p-6 opacity-70">
+                <p class="text-caliper" aria-label={h.reviews.placeholderRating}>
+                  {stars(5)}
+                </p>
+                <blockquote class="mt-3 lead italic">{h.reviews.placeholder}</blockquote>
+                <p class="mt-4 font-semibold">{h.reviews.placeholderName}</p>
+              </li>
+            ))
+      }
+    </ul>
+  </Section>
+
+  <Section id={t.anchors.contact} inner="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
+    <div>
+      <h2 class="title-section">{h.contact.title}</h2>
+      <dl class="mt-8 space-y-6 text-lg">
+        {
+          contactDetails.map((d) => (
+            <div>
+              <dt class="text-silver">{d.label}</dt>
+              <dd class={d.class}>{d.href ? <a href={d.href}>{d.value}</a> : d.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <a href={maps.directions} target="_blank" rel="noopener" class="mt-8 btn btn-outline">{h.contact.directions}</a>
+    </div>
+
+    <!-- Placeholder replaced by the map iframe on click (main.js), so no third-party request happens before consent. -->
+    <div id="map-wrap" class="min-h-[320px] overflow-hidden border border-graphite">
+      <div class="tile-ph flex h-full min-h-[320px] flex-col items-center justify-center gap-4 p-6 text-center">
+        <Icon name="pin" class="h-12 w-12 text-caliper" />
+        <button
+          id="map-load"
+          type="button"
+          class="btn btn-primary"
+          data-src={maps.embed(lang)}
+          data-title={h.contact.mapTitle}
+        >
+          {h.contact.mapLoad}
+        </button>
+        <p class="max-w-xs text-sm text-silver">{h.contact.mapNote}</p>
+      </div>
+    </div>
+
+    <div slot="after" class="overflow-hidden pb-16">
+      <Band href={site.phoneHref} class="mx-auto block w-[min(100%-2rem,52rem)] py-4 text-center">
+        <span class="block text-4xl display sm:text-6xl">{h.contact.band}</span>
+      </Band>
+    </div>
+  </Section>
+
+  <dialog id="lightbox" class="m-auto max-h-[90vh] max-w-[92vw] bg-transparent p-0 backdrop:bg-black/85">
+    <img id="lightbox-img" src="data:," alt="" class="max-h-[85vh] max-w-[92vw] object-contain" />
+    <button
+      id="lightbox-close"
+      type="button"
+      class="absolute top-2 right-2 grid h-11 w-11 place-items-center bg-caliper text-white"
+      aria-label={t.a11y.closePreview}
+    >
+      <Icon name="close" class="h-6 w-6" />
+    </button>
+  </dialog>
+</Base>

@@ -1,0 +1,28 @@
+---
+// Generates every page in every language from `routes` (src/i18n/index.ts).
+import type { GetStaticPaths } from 'astro';
+import Home from '../views/Home.astro';
+import Pricing from '../views/Pricing.astro';
+import { languages, routes, type Lang, type PageId } from '../i18n';
+
+const views = { home: Home, pricing: Pricing } satisfies Record<PageId, unknown>;
+
+export const getStaticPaths = (() =>
+  (Object.keys(routes) as PageId[]).flatMap((pageId) =>
+    languages.map((lang) => ({
+      // Rest params use `undefined` for the site root.
+      params: { slug: routes[pageId][lang].replace(/^\/|\/$/g, '') || undefined },
+      props: { pageId, lang },
+    })),
+  )) satisfies GetStaticPaths;
+
+interface Props {
+  pageId: PageId;
+  lang: Lang;
+}
+
+const { pageId, lang } = Astro.props;
+const View = views[pageId];
+---
+
+<View lang={lang} />

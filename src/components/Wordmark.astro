@@ -1,0 +1,12 @@
+---
+// Business name with its first word in the accent color ("AcmeWorkshop" → Acme + Workshop).
+import { site } from '../site';
+
+interface Props {
+  class?: string;
+}
+
+const [, accent = '', rest = site.name] = site.name.match(/^(\p{Lu}\p{Ll}+)(.*)$/u) ?? [];
+---
+
+<span class:list={['display-md', Astro.props.class]}><span class="text-caliper">{accent}</span>{rest}</span>

@@ -1,0 +1,42 @@
+---
+import { Picture } from 'astro:assets';
+import Wordmark from './Wordmark.astro';
+import logo from '../assets/logo.jpg';
+import { site } from '../site';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { t } = useTranslations(Astro.props.lang);
+---
+
+<!-- Bottom padding on small screens keeps content clear of the fixed call bar. -->
+<footer class="border-t border-graphite bg-steel pb-16 lg:pb-0">
+  <div
+    class="mx-auto flex max-w-page flex-col gap-6 px-4 py-10 text-silver sm:flex-row sm:items-center sm:justify-between sm:px-6"
+  >
+    <div class="flex items-center gap-3">
+      <Picture
+        src={logo}
+        formats={['webp']}
+        fallbackFormat="jpg"
+        width={112}
+        alt=""
+        class="logo-blend h-14 w-14 object-contain"
+        pictureAttributes={{ class: 'shrink-0' }}
+      />
+      <div>
+        <p class="text-xl text-chalk"><Wordmark /></p>
+        <p class="text-sm">{t.footer.tagline}</p>
+      </div>
+    </div>
+    <p class="text-sm">
+      {site.street}, {site.postalCode}
+      {site.city}<br />{t.info.tel}
+      <a class="hover:text-chalk" href={site.phoneHref}>{site.phone}</a>
+    </p>
+    <p class="text-sm">© {new Date().getFullYear()} {site.name}</p>
+  </div>
+</footer>

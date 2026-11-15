@@ -1,0 +1,31 @@
+---
+// Fixed call bar for small screens. With `revealAfter`, main.js keeps it hidden
+// until the element with that id scrolls out of view.
+import Icon from './Icon.astro';
+import { site } from '../site';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  revealAfter?: string;
+}
+
+const { lang, revealAfter } = Astro.props;
+const { t } = useTranslations(lang);
+---
+
+<div
+  id="callbar"
+  class="callbar fixed inset-x-0 bottom-0 z-30 border-t border-black/20 bg-caliper lg:hidden"
+  data-visible={revealAfter ? 'false' : 'true'}
+  data-reveal-after={revealAfter}
+  inert={Boolean(revealAfter)}
+>
+  <a
+    href={site.phoneHref}
+    class="flex items-center justify-center gap-3 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] text-white"
+  >
+    <Icon name="phone" class="h-6 w-6 shrink-0" />
+    <span class="text-2xl display-md">{t.nav.call}</span>
+  </a>
+</div>
