@@ -24,6 +24,8 @@ const { tone = 'base', divider = true, padding = 'py-20 sm:py-28', inner, class:
   ]}
   {...attrs}
 >
+  <!-- Rendered first so that positioned decorations paint below the content column. -->
+  <slot name="background" />
   <div class:list={['mx-auto max-w-page px-4 sm:px-6', padding, inner]}>
     <slot />
   </div>
