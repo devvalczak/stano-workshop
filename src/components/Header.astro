@@ -55,10 +55,10 @@ const iconButton = 'grid h-11 w-11 place-items-center border border-graphite hov
               class="lang-btn grid w-10 place-items-center"
               hreflang={l}
               lang={l}
-              aria-label={locales[l].langName}
               aria-current={l === lang ? 'true' : undefined}
             >
               {l.toUpperCase()}
+              <span class="sr-only"> – {locales[l].langName}</span>
             </a>
           ))
         }
