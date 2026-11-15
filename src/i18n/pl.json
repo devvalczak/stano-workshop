@@ -75,8 +75,8 @@
   },
   "home": {
     "meta": {
-      "title": "{name} – warsztat samochodowy w {city}",
-      "description": "{name} – profesjonalny serwis samochodowy w {cityLocative}. Wymiana olejów i filtrów, zawieszenie, sprzęgła, rozrządy, diagnostyka komputerowa. Tel. {phone}."
+      "title": "{name} – warsztat samochodowy w {cityLocative}",
+      "description": "{name} – warsztat samochodowy w {cityLocative}. Wymiana oleju i filtrów, naprawa zawieszenia, sprzęgła, rozrządy, diagnostyka komputerowa. Tel. {phone}."
     },
     "hero": {
       "kicker": "Warsztat samochodowy w {cityLocative}",
@@ -86,7 +86,7 @@
     },
     "services": {
       "title": "Co naprawiamy",
-      "lead": "Od przeglądu po poważniejsze naprawy mechaniczne. Nie widzisz swojej usterki na liście? Zadzwoń i zapytaj."
+      "lead": "Od wymiany oleju po poważniejsze naprawy mechaniczne. Nie widzisz swojej usterki na liście? Zadzwoń i zapytaj."
     },
     "perks": {
       "title": "Dlaczego {name}",
@@ -100,7 +100,7 @@
     "about": {
       "title": "O warsztacie",
       "paragraphs": [
-        "{name} to warsztat samochodowy w {cityLocative}, przy ulicy {street}. Zajmujemy się mechaniką pojazdów osobowych: od wymiany oleju po naprawy zawieszenia, sprzęgieł i rozrządów.",
+        "{name} to warsztat samochodowy w {cityLocative}. Zajmujemy się mechaniką samochodową: od wymiany oleju po naprawy zawieszenia, sprzęgieł i rozrządów.",
         "Przed naprawą mówimy, co jest do zrobienia i ile to będzie kosztować. Samochód odbierasz w umówionym terminie."
       ],
       "cta": "Umów wizytę",
@@ -128,7 +128,7 @@
   },
   "faq": {
     "title": "Najczęstsze pytania",
-    "lead": "Nie ma tu odpowiedzi na Twoje pytanie? Zadzwoń, wyjaśnimy.",
+    "lead": "Nie ma tu odpowiedzi, której szukasz? Zadzwoń, wyjaśnimy.",
     "todo": "[Do uzupełnienia]",
     "items": [
       {
@@ -137,7 +137,7 @@
       },
       {
         "q": "W jakich godzinach jest otwarty warsztat?",
-        "a": "{schedule}. Warsztat mieści się przy ulicy {street} w {cityLocative}."
+        "a": "{schedule}. Warsztat mieści się pod adresem {street} w {cityLocative}."
       },
       {
         "q": "Ile kosztuje naprawa?",

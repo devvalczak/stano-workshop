@@ -54,7 +54,7 @@
     },
     "suspension": {
       "title": "Suspension repair",
-      "desc": "Shock absorbers, springs, control arms, bushings and stabilizer links."
+      "desc": "Shock absorbers, springs, wishbones, bushes and anti-roll bar links."
     },
     "clutch": {
       "title": "Clutches",
@@ -76,7 +76,7 @@
   "home": {
     "meta": {
       "title": "{name} – car repair workshop in {city}",
-      "description": "{name} – professional car service in {city}, Poland. Oil and filter changes, suspension, clutches, timing belts, computer diagnostics. Phone {phone}."
+      "description": "{name} – car repair workshop in {city}, Poland. Oil and filter changes, suspension, clutches, timing belts, computer diagnostics. Phone {phone}."
     },
     "hero": {
       "kicker": "Car repair workshop in {city}",
@@ -86,7 +86,7 @@
     },
     "services": {
       "title": "What we fix",
-      "lead": "From routine servicing to major mechanical repairs. Don’t see your problem on the list? Call and ask."
+      "lead": "From oil changes to major mechanical repairs. Don’t see your problem listed? Call and ask."
     },
     "perks": {
       "title": "Why {name}",
@@ -100,7 +100,7 @@
     "about": {
       "title": "About the workshop",
       "paragraphs": [
-        "{name} is a car repair workshop in {city}, at {street}. We service passenger cars: from oil changes to suspension, clutch and timing repairs.",
+        "{name} is a car repair workshop in {city}, at {street}. We handle car mechanics: from oil changes to suspension, clutch and timing repairs.",
         "Before any repair we tell you what needs doing and what it will cost. You pick up your car on the agreed date."
       ],
       "cta": "Book a visit",
