@@ -56,6 +56,10 @@
       "title": "Suspension repair",
       "desc": "Shock absorbers, springs, wishbones, bushes and anti-roll bar links."
     },
+    "brakes": {
+      "title": "Brake service",
+      "desc": "Pads and discs, brake fluid, callipers and brake pipes."
+    },
     "clutch": {
       "title": "Clutches",
       "desc": "Clutch disc, pressure plate, release bearing and dual-mass flywheel replacement."
@@ -70,13 +74,13 @@
     },
     "general": {
       "title": "General repairs",
-      "desc": "Brakes, exhaust system, minor faults and whatever comes up on the road."
+      "desc": "Exhaust system, minor faults and whatever comes up on the road."
     }
   },
   "home": {
     "meta": {
       "title": "{name} – car repair workshop in {city}",
-      "description": "{name} – car repair workshop in {city}, Poland. Oil and filter changes, suspension, clutches, timing belts, computer diagnostics. Phone {phone}."
+      "description": "{name} – car repair workshop in {city}, Poland. Oil changes, suspension, brakes, clutches, timing belts, computer diagnostics. Phone {phone}."
     },
     "hero": {
       "kicker": "Car repair workshop in {city}",

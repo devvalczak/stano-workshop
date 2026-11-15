@@ -56,6 +56,10 @@
       "title": "Naprawa zawieszenia",
       "desc": "Amortyzatory, sprężyny, wahacze, tuleje i łączniki stabilizatora."
     },
+    "brakes": {
+      "title": "Serwis hamulców",
+      "desc": "Klocki i tarcze, płyn hamulcowy, zaciski i przewody hamulcowe."
+    },
     "clutch": {
       "title": "Sprzęgła",
       "desc": "Wymiana tarczy, docisku, łożyska i koła dwumasowego."
@@ -70,13 +74,13 @@
     },
     "general": {
       "title": "Naprawy bieżące",
-      "desc": "Hamulce, układ wydechowy, drobne usterki i wszystko, co wypadnie po drodze."
+      "desc": "Układ wydechowy, drobne usterki i wszystko, co wypadnie po drodze."
     }
   },
   "home": {
     "meta": {
       "title": "{name} – warsztat samochodowy w {cityLocative}",
-      "description": "{name} – warsztat samochodowy w {cityLocative}. Wymiana oleju i filtrów, naprawa zawieszenia, sprzęgła, rozrządy, diagnostyka komputerowa. Tel. {phone}."
+      "description": "{name} – warsztat samochodowy w {cityLocative}. Wymiana oleju i filtrów, zawieszenie, hamulce, sprzęgła, rozrządy, diagnostyka komputerowa. Tel. {phone}."
     },
     "hero": {
       "kicker": "Warsztat samochodowy w {cityLocative}",
