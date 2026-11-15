@@ -80,7 +80,7 @@ export const maps = {
 
 const base = String(import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');
 
-/** Root-relative path including BASE_PATH: url('/cennik/') → '/stano-workshop/cennik/'. */
+/** Root-relative path including BASE_PATH: url('/en/') → '/repo-name/en/'. */
 export const url = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 
 /** Absolute URL for canonical, hreflang, sitemap and Open Graph. */

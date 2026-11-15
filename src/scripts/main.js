@@ -1,4 +1,4 @@
-// Client-side behaviour. User-facing strings come from data-* attributes rendered by the templates.
+// Client-side behavior. User-facing strings come from data-* attributes rendered by the templates.
 
 const storage = {
   get(key) {

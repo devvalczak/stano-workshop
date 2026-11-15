@@ -18,10 +18,11 @@ npm run build         # build do build/
 npm run preview       # serwuje build/ lokalnie
 npm run lint          # ESLint + spójność tłumaczeń (scripts/check-i18n.mjs)
 npm run lint:fix      # ESLint z automatycznymi poprawkami
+npm run spell         # cspell: pisownia PL (pl.json, *.md) i EN-GB (en.json), kod po angielsku
 npm run format        # Prettier (zapis)
 npm run format:check  # Prettier (tylko sprawdzenie)
 npm run typecheck     # astro check
-npm run verify        # lint + format:check + typecheck — to samo co etap Lint w CI
+npm run verify        # lint + spell + format:check + typecheck — to samo co etap Lint w CI
 ```
 
 Node w wersji z `.nvmrc` (20). Po zmianie `.env` zrestartuj `npm run dev`.
@@ -96,6 +97,10 @@ Node w wersji z `.nvmrc` (20). Po zmianie `.env` zrestartuj `npm run dev`.
 - Mapa: `MAPS_QUERY` (pinezka wizytówki) i `GOOGLE_MAPS_URL` (link do wizytówki) w `.env`.
 
 ## Treści
+
+- **Każda zmiana tekstów na stronie: użyj skilla `site-copy`** (`.claude/skills/site-copy/`) —
+  głos marki, lokalne SEO, długości, PL/EN, placeholdery.
+- Słowa poprawne, a nieznane słownikowi (nazwy własne, terminy), dopisuj do `words` w `cspell.json`.
 
 - **Nie zmyślać treści biznesowych** (cen, opinii, warunków gwarancji, form płatności). Brak danych =
   `null` w danych/locale; na stronie wyświetla się placeholder („…”, „[Do uzupełnienia]”).

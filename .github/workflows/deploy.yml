@@ -32,6 +32,8 @@ jobs:
       - run: cp .env.example .env
       - name: ESLint + i18n consistency
         run: npm run lint
+      - name: Spelling (cspell, PL + EN)
+        run: npm run spell
       - name: Prettier
         run: npm run format:check
       - name: Type check

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "import": ["@cspell/dict-pl_pl/cspell-ext.json"],
+  "files": ["src/**", "scripts/**", ".github/**", ".claude/skills/**", "*.md", "*.mjs", "*.js", ".env.example"],
+  "ignorePaths": ["node_modules/", "build/", ".astro/", "public/", "src/assets/", "package-lock.json"],
+  "ignoreRegExpList": ["svgPathData", "unicodeRange"],
+  "patterns": [
+    {
+      "name": "svgPathData",
+      "pattern": "/\\bd=\\\\?\"[^\"]*\\\\?\"/g"
+    },
+    {
+      "name": "unicodeRange",
+      "pattern": "/U\\+[0-9A-F?-]+/gi"
+    }
+  ],
+  "overrides": [
+    {
+      "filename": ["src/i18n/pl.json", "*.md", ".claude/skills/**/*.md"],
+      "language": "pl,en"
+    },
+    {
+      "filename": ["src/i18n/en.json"],
+      "language": "en-GB"
+    }
+  ],
+  "words": [
+    "callbar",
+    "Callbar",
+    "colour",
+    "commitowa\u0107",
+    "commituj",
+    "Commity",
+    "consentchange",
+    "copywritingu",
+    "dwumasowe",
+    "dwumasowego",
+    "Favicony",
+    "helpery",
+    "lightbox",
+    "niedz",
+    "nvmrc",
+    "placeholderami",
+    "placeholdery",
+    "placeholder\u00f3w",
+    "Saira",
+    "skilla",
+    "speedlines",
+    "tensioners",
+    "uslugi",
+    "wdth",
+    "Wordmark"
+  ]
+}

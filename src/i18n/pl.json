@@ -52,7 +52,7 @@
       "title": "Wymiana olejów i filtrów",
       "desc": "Olej silnikowy, filtry oleju, powietrza, kabinowy i paliwa."
     },
-    "susp": {
+    "suspension": {
       "title": "Naprawa zawieszenia",
       "desc": "Amortyzatory, sprężyny, wahacze, tuleje i łączniki stabilizatora."
     },
@@ -64,7 +64,7 @@
       "title": "Rozrządy",
       "desc": "Paski i łańcuchy rozrządu wraz z napinaczami i pompą wody."
     },
-    "diag": {
+    "diagnostics": {
       "title": "Diagnostyka komputerowa",
       "desc": "Odczyt i kasowanie błędów, kontrolki na desce, analiza parametrów silnika."
     },

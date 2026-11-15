@@ -52,7 +52,7 @@
       "title": "Oil and filter change",
       "desc": "Engine oil plus oil, air, cabin and fuel filters."
     },
-    "susp": {
+    "suspension": {
       "title": "Suspension repair",
       "desc": "Shock absorbers, springs, control arms, bushings and stabilizer links."
     },
@@ -64,7 +64,7 @@
       "title": "Timing belts and chains",
       "desc": "Timing belts and chains, with tensioners and water pump."
     },
-    "diag": {
+    "diagnostics": {
       "title": "Computer diagnostics",
       "desc": "Reading and clearing fault codes, dashboard warning lights, engine data analysis."
     },
